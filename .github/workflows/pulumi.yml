@@ -34,7 +34,7 @@ jobs:
     needs: pulumi-preview
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    environment: pulumi
+    environment: pulumi-production
     steps:
       - run: echo "Deployment approved"
 

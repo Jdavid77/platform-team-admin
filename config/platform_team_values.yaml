@@ -3,6 +3,9 @@ github_repositories:
     description: Repository to manage platform team membership and admin artifacts
     environments:
       - name: pulumi
+      - name: pulumi-production
+        reviewers:
+          - Jdavid77
   - name: platform-core
     description: Core platform runtime
   - name: platform-demo-apps
