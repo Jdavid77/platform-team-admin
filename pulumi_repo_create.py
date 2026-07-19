@@ -1,6 +1,6 @@
 import yaml
 from pulumi import ResourceOptions, export
-from pulumi_github import Provider, Repository, Membership
+from pulumi_github import Provider, Repository, Membership, BranchProtection, RepositoryEnvironment
 
 # def create_members(provider: Provider):
 #     with open("config/platform_team_values.yaml") as f:
@@ -37,5 +37,21 @@ def create_repos(provider: Provider):
             visibility=visibility,
             opts=ResourceOptions(provider=provider),
         )
+
+        branch_protection = BranchProtection(
+            f"{repo_name}-main-branch-protection",
+            repository_id=repo_name,
+            pattern="*",
+            enforce_admins=True,
+            require_signed_commits=True,
+        )
+
+        for env_def in repo_def.get("environments", []):
+            RepositoryEnvironment(
+                f"{repo_name}-{env_def['name']}-environment",
+                repository=repo_name,
+                environment=env_def["name"],
+                opts=ResourceOptions(provider=provider, depends_on=[repository]),
+            )
 
         export(f"{repo_name}_repo_name", repository.name)

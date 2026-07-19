@@ -1,6 +1,8 @@
 github_repositories:
   - name: platform-team-admin
     description: Repository to manage platform team membership and admin artifacts
+    environments:
+      - name: pulumi
   - name: platform-core
     description: Core platform runtime
   - name: platform-demo-apps
