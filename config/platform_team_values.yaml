@@ -5,3 +5,9 @@ github_repositories:
     description: Core platform runtime
   - name: platform-demo-apps
     description: Demo application for testing the platform
+
+# github_organization_members:
+#   - name: Team Member
+#     github-role: admin
+#     github-username: team_member
+#     email: team_member@email.com
