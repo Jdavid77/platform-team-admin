@@ -21,7 +21,6 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - run: uv sync
-        working-directory: platform-team-administration
 
       - uses: pulumi/actions@v6
         with:
@@ -54,7 +53,6 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - run: uv sync
-        working-directory: platform-team-administration
 
       - uses: pulumi/actions@v6
         with:
