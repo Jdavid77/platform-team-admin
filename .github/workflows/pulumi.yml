@@ -10,7 +10,7 @@ on:
 jobs:
   pulumi-preview:
     runs-on: ubuntu-latest
-    environment: platform-admin
+    environment: pulumi
     steps:
       - uses: actions/checkout@v4
 
