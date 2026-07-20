@@ -1,20 +1,23 @@
 github_repositories:
   - name: platform-team-admin
-    description: Repository to manage platform team membership and admin artifacts
+    description: The Platform Engineer's Handbook - Repository to manage platform team membership and admin artifacts
+    visibility: public
     environments:
       - name: pulumi
       - name: pulumi-production
         reviewers:
           - Jdavid77
   - name: platform-core
-    description: Core platform runtime
+    description: The Platform Engineer's Handbook - Core platform runtime
+    visibility: public
     environments:
       - name: platform-sandbox
       - name: app-dev
         reviewers:
           - Jdavid77
   - name: platform-demo-apps
-    description: Demo application for testing the platform
+    description: The Platform Engineer's Handbook - Demo application for testing the platform
+    visibility: public
 
 # github_organization_members:
 #   - name: Team Member
