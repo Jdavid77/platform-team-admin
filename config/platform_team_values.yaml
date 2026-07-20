@@ -8,6 +8,11 @@ github_repositories:
           - Jdavid77
   - name: platform-core
     description: Core platform runtime
+    environments:
+      - name: platform-sandbox
+      - name: app-dev
+        reviewers:
+          - Jdavid77
   - name: platform-demo-apps
     description: Demo application for testing the platform
 
