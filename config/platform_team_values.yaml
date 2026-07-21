@@ -12,6 +12,8 @@ github_repositories:
     visibility: public
     environments:
       - name: platform-sandbox
+        reviewers:
+          - Jdavid77
       - name: app-dev
         reviewers:
           - Jdavid77
