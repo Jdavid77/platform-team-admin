@@ -20,6 +20,9 @@ github_repositories:
   - name: platform-demo-apps
     description: The Platform Engineer's Handbook - Demo application for testing the platform
     visibility: public
+  - name: platform-gitops
+    description: The Platform Engineer's Handbook - FluxCD Repository used to manage all of the deployments
+    visibility: public
 
 # github_organization_members:
 #   - name: Team Member
