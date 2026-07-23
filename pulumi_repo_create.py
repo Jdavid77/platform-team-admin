@@ -40,11 +40,11 @@ def create_repos(provider: Provider):
 
         branch_protection = BranchProtection(
             f"{repo_name}-main-branch-protection",
-            repository_id=repository.node_id,
+            repository_id=repository.name,
             pattern="*",
             enforce_admins=True,
             require_signed_commits=True,
-            opts=ResourceOptions(provider=provider, depends_on=[repository]),
+            opts=ResourceOptions(provider=provider, delete_before_replace=True),
         )
 
         for env_def in repo_def.get("environments", []):
