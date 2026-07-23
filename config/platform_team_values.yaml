@@ -21,7 +21,10 @@ github_repositories:
     description: The Platform Engineer's Handbook - Demo application for testing the platform
     visibility: public
   - name: platform-gitops
-    description: The Platform Engineer's Handbook - FluxCD Repository used to manage all of the deployments
+    description: The Platform Engineer's Handbook - FluxCD App-of-Apps Repository
+    visibility: public
+  - name: platform-services
+    description: The Platform Engineer's Handbook - Platform Services Tenant Repository
     visibility: public
 
 # github_organization_members:
