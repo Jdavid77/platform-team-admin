@@ -17,6 +17,9 @@ github_repositories:
       - name: app-dev
         reviewers:
           - Jdavid77
+      - name: shared
+        reviewers:
+          - Jdavid77
   - name: platform-demo-apps
     description: The Platform Engineer's Handbook - Demo application for testing the platform
     visibility: public
