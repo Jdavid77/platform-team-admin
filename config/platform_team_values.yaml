@@ -2,6 +2,10 @@ github_repositories:
   - name: platform-team-admin
     description: The Platform Engineer's Handbook - Repository to manage platform team membership and admin artifacts
     visibility: public
+    branch_protection:
+      pattern: "main"
+      enforce_admins: true
+      require_signed_commits: true
     environments:
       - name: pulumi
       - name: pulumi-production
@@ -10,6 +14,10 @@ github_repositories:
   - name: platform-core
     description: The Platform Engineer's Handbook - Core platform runtime
     visibility: public
+    branch_protection:
+      pattern: "main"
+      enforce_admins: true
+      require_signed_commits: true
     environments:
       - name: platform-sandbox
         reviewers:
@@ -23,12 +31,34 @@ github_repositories:
   - name: platform-demo-apps
     description: The Platform Engineer's Handbook - Demo application for testing the platform
     visibility: public
+    branch_protection:
+      pattern: "main"
+      enforce_admins: true
+      require_signed_commits: true
   - name: platform-gitops
     description: The Platform Engineer's Handbook - FluxCD App-of-Apps Repository
     visibility: public
+    branch_protection:
+      pattern: "main"
+      enforce_admins: true
+      require_signed_commits: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: false
+        require_code_owner_reviews: false
+        require_last_push_approval: true
   - name: platform-services
     description: The Platform Engineer's Handbook - Platform Services Tenant Repository
     visibility: public
+    branch_protection:
+      pattern: "main"
+      enforce_admins: true
+      require_signed_commits: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: false
+        require_code_owner_reviews: false
+        require_last_push_approval: true
 
 # github_organization_members:
 #   - name: Team Member
