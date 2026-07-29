@@ -38,27 +38,28 @@ def create_repos(provider: Provider):
             opts=ResourceOptions(provider=provider),
         )
 
-        bp_def = repo_def.get("branch_protection", {})
+        for bp_def in repo_def.get("branch_protection", []):
+            pattern = bp_def.get("pattern", "main")
 
-        pr_reviews = None
-        pr_def = bp_def.get("required_pull_request_reviews")
-        if pr_def is not None:
-            pr_reviews = [BranchProtectionRequiredPullRequestReviewArgs(
-                required_approving_review_count=pr_def.get("required_approving_review_count", 1),
-                dismiss_stale_reviews=pr_def.get("dismiss_stale_reviews", False),
-                require_code_owner_reviews=pr_def.get("require_code_owner_reviews", False),
-                require_last_push_approval=pr_def.get("require_last_push_approval", False),
-            )]
+            pr_reviews = None
+            pr_def = bp_def.get("required_pull_request_reviews")
+            if pr_def is not None:
+                pr_reviews = [BranchProtectionRequiredPullRequestReviewArgs(
+                    required_approving_review_count=pr_def.get("required_approving_review_count", 1),
+                    dismiss_stale_reviews=pr_def.get("dismiss_stale_reviews", False),
+                    require_code_owner_reviews=pr_def.get("require_code_owner_reviews", False),
+                    require_last_push_approval=pr_def.get("require_last_push_approval", False),
+                )]
 
-        branch_protection = BranchProtection(
-            f"{repo_name}-main-branch-protection",
-            repository_id=repository.name,
-            pattern=bp_def.get("pattern", "*"),
-            enforce_admins=bp_def.get("enforce_admins", True),
-            require_signed_commits=bp_def.get("require_signed_commits", True),
-            required_pull_request_reviews=pr_reviews,
-            opts=ResourceOptions(provider=provider, delete_before_replace=True),
-        )
+            BranchProtection(
+                f"{repo_name}-{pattern}-branch-protection",
+                repository_id=repository.name,
+                pattern=pattern,
+                enforce_admins=bp_def.get("enforce_admins", True),
+                require_signed_commits=bp_def.get("require_signed_commits", True),
+                required_pull_request_reviews=pr_reviews,
+                opts=ResourceOptions(provider=provider, delete_before_replace=True),
+            )
 
         for env_def in repo_def.get("environments", []):
             reviewer_usernames = env_def.get("reviewers", [])

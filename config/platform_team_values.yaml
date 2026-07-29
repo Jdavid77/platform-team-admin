@@ -3,9 +3,17 @@ github_repositories:
     description: The Platform Engineer's Handbook - Repository to manage platform team membership and admin artifacts
     visibility: public
     branch_protection:
-      pattern: "main"
-      enforce_admins: true
-      require_signed_commits: true
+      - pattern: "main"
+        enforce_admins: true
+        require_signed_commits: true
+        required_pull_request_reviews:
+          required_approving_review_count: 0
+          dismiss_stale_reviews: false
+          require_code_owner_reviews: false
+          require_last_push_approval: false
+      - pattern: "*"
+        enforce_admins: true
+        require_signed_commits: true
     environments:
       - name: pulumi
       - name: pulumi-production
@@ -15,9 +23,9 @@ github_repositories:
     description: The Platform Engineer's Handbook - Core platform runtime
     visibility: public
     branch_protection:
-      pattern: "main"
-      enforce_admins: true
-      require_signed_commits: true
+      - pattern: "main"
+        enforce_admins: true
+        require_signed_commits: true
     environments:
       - name: platform-sandbox
         reviewers:
@@ -32,33 +40,36 @@ github_repositories:
     description: The Platform Engineer's Handbook - Demo application for testing the platform
     visibility: public
     branch_protection:
-      pattern: "main"
-      enforce_admins: true
-      require_signed_commits: true
+      - pattern: "main"
+        enforce_admins: true
+        require_signed_commits: true
   - name: platform-gitops
     description: The Platform Engineer's Handbook - FluxCD App-of-Apps Repository
     visibility: public
     branch_protection:
-      pattern: "main"
-      enforce_admins: true
-      require_signed_commits: true
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-        dismiss_stale_reviews: false
-        require_code_owner_reviews: false
-        require_last_push_approval: true
+      - pattern: "main"
+        enforce_admins: true
+        require_signed_commits: true
+        required_pull_request_reviews:
+          required_approving_review_count: 0
+          dismiss_stale_reviews: false
+          require_code_owner_reviews: false
+          require_last_push_approval: false
   - name: platform-services
     description: The Platform Engineer's Handbook - Platform Services Tenant Repository
     visibility: public
     branch_protection:
-      pattern: "main"
-      enforce_admins: true
-      require_signed_commits: true
-      required_pull_request_reviews:
-        required_approving_review_count: 1
-        dismiss_stale_reviews: false
-        require_code_owner_reviews: false
-        require_last_push_approval: true
+      - pattern: "main" # staging
+        enforce_admins: true
+        require_signed_commits: true
+      - pattern: "production" # prod
+        enforce_admins: true
+        require_signed_commits: true
+        required_pull_request_reviews:
+          required_approving_review_count: 0
+          dismiss_stale_reviews: false
+          require_code_owner_reviews: false
+          require_last_push_approval: false
 
 # github_organization_members:
 #   - name: Team Member
