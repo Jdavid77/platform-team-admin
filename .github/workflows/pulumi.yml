@@ -1,17 +1,15 @@
-name: Pulumi Deploy
+name: Pulumi Infrastructure
 
 on:
-  workflow_run:
-    workflows: ["Release"]
-    types:
-      - completed
+  push:
     branches:
       - main
+    tags:
+      - 'v*'
 
 jobs:
   pulumi-preview:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment: pulumi
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +32,7 @@ jobs:
 
   approve-deployment:
     needs: pulumi-preview
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     environment: pulumi-production
     steps:
@@ -41,6 +40,7 @@ jobs:
 
   pulumi-up:
     needs: approve-deployment
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     environment: pulumi
     steps:
