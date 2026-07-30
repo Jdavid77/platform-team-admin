@@ -23,7 +23,7 @@ jobs:
         run: uv sync --all-groups
 
       - name: Check code formatting with black
-        run: uv run black --check --diff .
+        run: uv run black --check --diff --target-version py312 .
 
       - name: Type check with mypy
         run: uv run mypy . --ignore-missing-imports

@@ -1,6 +1,14 @@
 import yaml
 from pulumi import ResourceOptions, export
-from pulumi_github import Provider, Repository, Membership, BranchProtection, BranchProtectionRequiredPullRequestReviewArgs, RepositoryEnvironment, RepositoryEnvironmentReviewerArgs, get_user
+from pulumi_github import (
+    BranchProtection,
+    BranchProtectionRequiredPullRequestReviewArgs,
+    Provider,
+    Repository,
+    RepositoryEnvironment,
+    RepositoryEnvironmentReviewerArgs,
+    get_user,
+)
 
 # def create_members(provider: Provider):
 #     with open("config/platform_team_values.yaml") as f:
@@ -20,6 +28,7 @@ from pulumi_github import Provider, Repository, Membership, BranchProtection, Br
 #             username=username,
 #             role=role,
 #         )
+
 
 def create_repos(provider: Provider):
     with open("config/platform_team_values.yaml") as f:
@@ -44,12 +53,22 @@ def create_repos(provider: Provider):
             pr_reviews = None
             pr_def = bp_def.get("required_pull_request_reviews")
             if pr_def is not None:
-                pr_reviews = [BranchProtectionRequiredPullRequestReviewArgs(
-                    required_approving_review_count=pr_def.get("required_approving_review_count", 1),
-                    dismiss_stale_reviews=pr_def.get("dismiss_stale_reviews", False),
-                    require_code_owner_reviews=pr_def.get("require_code_owner_reviews", False),
-                    require_last_push_approval=pr_def.get("require_last_push_approval", False),
-                )]
+                pr_reviews = [
+                    BranchProtectionRequiredPullRequestReviewArgs(
+                        required_approving_review_count=pr_def.get(
+                            "required_approving_review_count", 1
+                        ),
+                        dismiss_stale_reviews=pr_def.get(
+                            "dismiss_stale_reviews", False
+                        ),
+                        require_code_owner_reviews=pr_def.get(
+                            "require_code_owner_reviews", False
+                        ),
+                        require_last_push_approval=pr_def.get(
+                            "require_last_push_approval", False
+                        ),
+                    )
+                ]
 
             BranchProtection(
                 f"{repo_name}-{pattern}-branch-protection",
