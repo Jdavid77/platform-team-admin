@@ -6,3 +6,11 @@ dependencies = [
     "pulumi>=3.0.0,<4.0.0",
     "pulumi-github>=6.0.0",
 ]
+
+[tool.uv]
+dev-dependencies = [
+    "black",
+    "mypy",
+    "ruff",
+    "bandit",
+]
